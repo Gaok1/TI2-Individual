@@ -1,0 +1,5 @@
+INDEX VERSION 1.134+/home/gaok1/Área de Trabalho/Psql-Maven/ti2cc-master/01ConexaoPostgres/.metadata/.plugins/org.eclipse.jdt.core
+3960818564.index
+2678842122.index
+1865797976.index
+4210242305.index
