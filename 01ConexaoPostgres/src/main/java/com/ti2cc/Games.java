@@ -2,20 +2,20 @@ package com.ti2cc;
 
 public class Games {
 	private String nome;
-	private String genero;
+	private int id;
 	private String descricao;
 	private int preco;
 	
 	public Games() {
 		this.nome = "";
-		this.genero = "";
+		this.id = -1;
 		this.descricao = "";
 		this.preco = -1;
 	}
 	
-	public Games(String nome, String genero, String descricao, int preco) {
+	public Games(int id, String nome, String descricao, int preco) {
 		this.nome = nome;
-		this.genero = genero;
+		this.id = id;
 		this.descricao = descricao;
 		this.preco = preco;
 	}
@@ -28,12 +28,12 @@ public class Games {
 		this.nome = nome;
 	}
 
-	public String getGenero() {
-		return genero;
+	public int getid() {
+		return id;
 	}
 
-	public void setGenero(String genero) {
-		this.genero = genero;
+	public void setid(int id) {
+		this.id = id;
 	}
 
 	public String getDescricao() {
@@ -54,6 +54,6 @@ public class Games {
 
 	@Override
 	public String toString() {
-		return "Usuario [codigo=" + nome + ", login=" + genero + ", senha=" + descricao + ", sexo=" + preco + "]";
+		return "games [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", preco=" + preco + "]";
 	}	
 }
