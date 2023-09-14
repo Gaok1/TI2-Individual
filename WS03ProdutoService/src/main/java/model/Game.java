@@ -1,19 +1,23 @@
-package com.ti2cc;
+package model;
 
-public class Games {
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+
+public class Game{
 	private String nome;
 	private int id;
 	private String descricao;
 	private int preco;
 	
-	public Games() {
+	public Game() {
 		this.nome = "";
 		this.id = -1;
 		this.descricao = "";
 		this.preco = -1;
 	}
 	
-	public Games(int id, String nome, String descricao, int preco) {
+	public Game(int id, String nome, String descricao, int preco) {
 		this.nome = nome;
 		this.id = id;
 		this.descricao = descricao;

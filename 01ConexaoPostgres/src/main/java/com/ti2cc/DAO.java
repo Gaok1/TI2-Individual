@@ -49,7 +49,7 @@ public class DAO {
 		boolean status = false;
 		try {  
 			Statement st = conexao.createStatement();
-			st.executeUpdate("INSERT INTO games (id, nome, descricao, preco) "
+			st.executeUpdate("INSERT INTO game (id, nome, descricao, preco) "
 					       + "VALUES ("+game.getid()+ ", '" + game.getNome() + "', '"  
 					       + game.getDescricao() + "', '" + game.getPreco() + "');");
 			st.close();
@@ -62,25 +62,31 @@ public class DAO {
 	
 	public boolean atualizarGame(Games game) {
 		boolean status = false;
-		try {  
-			Statement st = conexao.createStatement();
-			String sql = "UPDATE games SET preco = " + game.getPreco() + ", nome = '"  
-				       + game.getNome() + "', descricao = '" + game.getDescricao() + "'"
-					   + " WHERE id = " + game.getid();
-			st.executeUpdate(sql);
-			st.close();
-			status = true;
-		} catch (SQLException u) {  
-			throw new RuntimeException(u);
+		try {
+			String sql = "UPDATE game SET preco = ?, nome = ?, descricao = ? WHERE id = ?";
+			PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+			preparedStatement.setDouble(1, game.getPreco());
+			preparedStatement.setString(2, game.getNome());
+			preparedStatement.setString(3, game.getDescricao());
+			preparedStatement.setInt(4, game.getid());
+	
+			int rowsUpdated = preparedStatement.executeUpdate();
+			if (rowsUpdated > 0) {
+				status = true;
+			}
+			preparedStatement.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
 		}
 		return status;
 	}
+	
 	
 	public boolean excluirGame(int id) {
 		boolean status = false;
 		try {  
 			Statement st = conexao.createStatement();
-			st.executeUpdate("DELETE FROM games WHERE id = " + id);
+			st.executeUpdate("DELETE FROM game WHERE id = " + id);
 			st.close();
 			status = true;
 		} catch (SQLException u) {  
@@ -95,7 +101,7 @@ public class DAO {
 		
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			ResultSet rs = st.executeQuery("SELECT * FROM games");		
+			ResultSet rs = st.executeQuery("SELECT * FROM game");		
 	         if(rs.next()){
 	             rs.last();
 	             games = new Games[rs.getRow()];
