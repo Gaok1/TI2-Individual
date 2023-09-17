@@ -54,7 +54,7 @@ ALTER TABLE public.produto OWNER TO gaok1;
 -- Name: produto produto_pkey; Type: CONSTRAINT; Schema: public; Owner: ti2cc
 --
 
-    ALTER TABLE ONLY public.produto
+ALTER TABLE ONLY public.produto
     ADD CONSTRAINT produto_pkey PRIMARY KEY (id);
 
 
